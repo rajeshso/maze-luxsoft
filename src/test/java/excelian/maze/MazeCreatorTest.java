@@ -24,4 +24,15 @@ public class MazeCreatorTest {
         Maze maze = createMaze("/src/test/resources/TestMaze1.txt");
         assertThat(maze).isNotNull();
     }
+
+    @Test
+    public final void testCreateMazeWithCellMap() {
+        Maze maze = createMaze("/src/test/resources/TestMaze2.txt");
+        assertThat(maze.getCell("2-10")).isNotNull();
+    }
+    @Test
+    public final void testNegativeCreateMazeWithCellMap() {
+        Maze maze = createMaze("/src/test/resources/TestMaze2.txt");
+        assertThat(maze.getCell("200-1000")).isNull();
+    }
 }
