@@ -3,6 +3,7 @@ package excelian.maze;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -59,4 +60,15 @@ public class MazeCreatorTest {
         assertThat(maze.getEndCell().getVisitableUniqueID()).isEqualTo("6-48");
     }
 
+    @Test
+    public final void testCreateCells() throws MazeCreationException {
+        Maze maze = null;
+        maze = createMaze("/src/main/resources/ExampleMaze.txt");
+        Map<String, Visitable> cellMap = maze.getMazeMap();
+        assertThat(cellMap.size()).isEqualTo(225);
+        assertThat(cellMap.get("1-1").isBlocked()).isEqualTo(true);
+        assertThat(cellMap.get("2-2").isBlocked()).isEqualTo(false);
+        assertThat(cellMap.get("4-10").isBlocked()).isEqualTo(false);
+        assertThat(cellMap.get("4-13").isBlocked()).isEqualTo(true);
+    }
 }

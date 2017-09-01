@@ -26,4 +26,9 @@ public class Maze {
     public Visitable getEndCell() {
         return endCell;
     }
+
+    public Map<String, Visitable> getMazeMap() {
+        return mazeMap;
+    }
+
 }
