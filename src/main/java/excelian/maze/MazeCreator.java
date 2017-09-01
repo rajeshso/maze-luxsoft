@@ -3,9 +3,7 @@ package excelian.maze;
 import java.io.File;
 import java.io.FileReader;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 class MazeCreator {
 
@@ -65,5 +63,18 @@ class MazeCreator {
 
     private static String makeCellId(int x, int y) {
         return Integer.toString(x) + CELL_ID_AXIS_DELIMITER + Integer.toString(y);
+    }
+
+    public static Visitor createExplorer(int id) {
+        return new Explorer(id);
+    }
+
+    public static void print(Map<String, Visitable> mazeMap) {
+        Set<String> cellIds = mazeMap.keySet();
+        TreeSet<String> cellIdsSortedSet = new TreeSet<>(cellIds);
+        cellIdsSortedSet.forEach((cellId) -> {
+            Visitable cell = mazeMap.get(cellId);
+            System.out.println("Cell " + cell.getVisitableUniqueID() + " Dark " + cell.isBlocked());
+        });
     }
 }

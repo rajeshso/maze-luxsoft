@@ -3,6 +3,7 @@ package excelian.maze;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,13 +63,23 @@ public class MazeCreatorTest {
 
     @Test
     public final void testCreateCells() throws MazeCreationException {
-        Maze maze = null;
-        maze = createMaze("/src/main/resources/ExampleMaze.txt");
+        Maze maze = createMaze("/src/main/resources/ExampleMaze.txt");
         Map<String, Visitable> cellMap = maze.getMazeMap();
         assertThat(cellMap.size()).isEqualTo(225);
         assertThat(cellMap.get("1-1").isBlocked()).isEqualTo(true);
         assertThat(cellMap.get("2-2").isBlocked()).isEqualTo(false);
         assertThat(cellMap.get("4-10").isBlocked()).isEqualTo(false);
         assertThat(cellMap.get("4-13").isBlocked()).isEqualTo(true);
+    }
+
+    @Test
+    public final void testStartCellStatusForExplorer() throws MazeCreationException {
+        Maze maze = createMaze("/src/main/resources/ExampleMaze.txt");
+        Visitor visitor = MazeCreator.createExplorer(2);
+        maze.permitExplorer(visitor);
+        String cellId = visitor.getCurrentCell();
+        List<String> cellVisitHistory = visitor.getPreviousMoves();
+        assertThat(maze.getStartCell().getVisitableUniqueID()).isEqualTo(cellId);
+        assertThat(cellVisitHistory).hasSize(1);
     }
 }
