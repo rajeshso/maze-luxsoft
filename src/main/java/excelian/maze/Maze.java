@@ -70,6 +70,16 @@ public class Maze {
         return move(visitor, rightCell);
     }
 
+    public boolean moveLeft(Visitor visitor) {
+        Visitable leftCell = this.getLeftCell(getVisitorsCurrentCell(visitor));
+        return move(visitor, leftCell);
+    }
+
+    public boolean moveUp(Visitor visitor) {
+        Visitable upCell = this.getUpCell(getVisitorsCurrentCell(visitor));
+        return move(visitor, upCell);
+    }
+
     public boolean moveDown(Visitor visitor) {
         Visitable downCell = this.getDownCell(getVisitorsCurrentCell(visitor));
         return move(visitor, downCell);
