@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.*;
 
-class MazeUtil {
+class MazeUtils {
 
     private static final char DARK_CELL = 'X';
 
@@ -14,6 +14,8 @@ class MazeUtil {
     private static final char END_CELL = 'F';
 
     private static final String CELL_ID_AXIS_DELIMITER = "-";
+
+    public enum Direction {UP, DOWN, LEFT, RIGHT}
 
     public static Maze createMaze(File mazePlanFile) throws MazeCreationException {
         String row;
@@ -61,7 +63,7 @@ class MazeUtil {
     }
 
 
-    private static String makeCellId(int x, int y) {
+    static String makeCellId(int x, int y) {
         return Integer.toString(x) + CELL_ID_AXIS_DELIMITER + Integer.toString(y);
     }
 
@@ -69,7 +71,7 @@ class MazeUtil {
         return new Explorer(id);
     }
 
-    public static void print(Map<String, Visitable> mazeMap) {
+        public static void print(Map<String, Visitable> mazeMap) {
         Set<String> cellIds = mazeMap.keySet();
         TreeSet<String> cellIdsSortedSet = new TreeSet<>(cellIds);
         cellIdsSortedSet.forEach((cellId) -> {

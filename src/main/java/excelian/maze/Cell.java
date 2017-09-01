@@ -27,6 +27,16 @@ public class Cell implements Visitable {
         return blocked;
     }
 
+    @Override
+    public int getX() {
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        return y;
+    }
+
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("Cell ");
