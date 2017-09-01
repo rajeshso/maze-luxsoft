@@ -68,4 +68,21 @@ public class MovementTest {
         assertThat(reachedDestination).isTrue();
         mazeRight.sayByeToVisitor(visitorRight);
     }
+
+    @Test
+    public final void testVisitHistory() throws MazeCreationException {
+        Maze mazeRight = MazeAndExplorerTest.createMaze("/src/test/resources/TestMaze4.txt");
+        Visitor visitorRight = MazeUtils.createExplorer(1);
+        mazeRight.permitExplorer(visitorRight);
+        mazeRight.moveDown(visitorRight);
+        mazeRight.moveRight(visitorRight);
+        mazeRight.moveRight(visitorRight);
+        mazeRight.moveRight(visitorRight);
+        mazeRight.moveDown(visitorRight);
+        boolean reachedDestination = mazeRight.reachedDestination(visitorRight);
+        assertThat(reachedDestination).isTrue();
+        List<String> visitHistory = visitorRight.getPreviousMoves();
+        assertThat(visitHistory).contains("3-2", "4-2", "4-3", "4-4", "4-5", "5-5");
+        mazeRight.sayByeToVisitor(visitorRight);
+    }
 }
