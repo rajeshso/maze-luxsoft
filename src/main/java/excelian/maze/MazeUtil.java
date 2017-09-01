@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.*;
 
-class MazeCreator {
+class MazeUtil {
 
     private static final char DARK_CELL = 'X';
 
