@@ -54,7 +54,7 @@ UserStory 3
 Instructions to use this program
 ----------------------------------
 
-java TestClient <Optionally the Maze file>
+java TestClient < Optionally the Maze file >
 
 The Screen would display a content as below:
 Welcome to the next move in the maze.
