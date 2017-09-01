@@ -15,8 +15,6 @@ class MazeUtils {
 
     private static final String CELL_ID_AXIS_DELIMITER = "-";
 
-    public enum Direction {UP, DOWN, LEFT, RIGHT}
-
     public static Maze createMaze(File mazePlanFile) throws MazeCreationException {
         String row;
         List<String> rows = new ArrayList<>();
@@ -29,7 +27,6 @@ class MazeUtils {
             throw new MazeCreationException(ioe.getMessage());
         }
     }
-
 
     private static Maze createCells(List<String> rows) throws MazeCreationException {
         int rowNumber = 0;
@@ -62,7 +59,6 @@ class MazeUtils {
         return new Maze(mazeMap, startCell, endCell);
     }
 
-
     static String makeCellId(int x, int y) {
         return Integer.toString(x) + CELL_ID_AXIS_DELIMITER + Integer.toString(y);
     }
@@ -71,7 +67,7 @@ class MazeUtils {
         return new Explorer(id);
     }
 
-        public static void print(Map<String, Visitable> mazeMap) {
+    public static void print(Map<String, Visitable> mazeMap) {
         Set<String> cellIds = mazeMap.keySet();
         TreeSet<String> cellIdsSortedSet = new TreeSet<>(cellIds);
         cellIdsSortedSet.forEach((cellId) -> {
@@ -79,4 +75,6 @@ class MazeUtils {
             System.out.println("Cell " + cell.getVisitableUniqueID() + " Dark " + cell.isBlocked());
         });
     }
+
+    public enum Direction {UP, DOWN, LEFT, RIGHT}
 }

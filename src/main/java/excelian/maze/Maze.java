@@ -30,10 +30,10 @@ public class Maze {
         List<MazeUtils.Direction> resultStringList = new ArrayList<>();
         Visitable currentCell;
         currentCell = getCell(getCurrentCell(visitor));
-        if (getUpCell(currentCell)!=null) resultStringList.add(UP);
-        if (getDownCell(currentCell)!=null) resultStringList.add(DOWN);
-        if (getLeftCell(currentCell)!=null) resultStringList.add(LEFT);
-        if (getRightCell(currentCell)!=null) resultStringList.add(RIGHT);
+        if (getUpCell(currentCell) != null) resultStringList.add(UP);
+        if (getDownCell(currentCell) != null) resultStringList.add(DOWN);
+        if (getLeftCell(currentCell) != null) resultStringList.add(LEFT);
+        if (getRightCell(currentCell) != null) resultStringList.add(RIGHT);
         return resultStringList;
     }
 
@@ -70,6 +70,11 @@ public class Maze {
         return move(visitor, rightCell);
     }
 
+    public boolean moveDown(Visitor visitor) {
+        Visitable downCell = this.getDownCell(getVisitorsCurrentCell(visitor));
+        return move(visitor, downCell);
+    }
+
     private Visitable getVisitorsCurrentCell(Visitor visitor) {
         return mazeMap.get(visitor.getCurrentCell());
     }
@@ -80,6 +85,14 @@ public class Maze {
             visitSuccessful = visitor.visit(newCell);
         }
         return visitSuccessful;
+    }
+
+    public boolean reachedDestination(Visitor visitor) {
+        return visitor.getCurrentCell().equals(endCell.getVisitableUniqueID());
+    }
+
+    public void sayByeToVisitor(Visitor visitor) {
+        explorerRegistry.remove(visitor);
     }
 
     public Visitable getCell(String cellId) {
