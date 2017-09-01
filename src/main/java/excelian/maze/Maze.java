@@ -17,6 +17,7 @@ public class Maze {
         this.startCell = startCell;
         this.endCell = endCell;
     }
+
     public Visitable getCell(String cellId) {
         return mazeMap.get(cellId);
     }
