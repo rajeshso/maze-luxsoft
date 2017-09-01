@@ -67,6 +67,7 @@ class MazeUtils {
         return new Explorer(id);
     }
 
+    //Useful utility method
     public static void print(Map<String, Visitable> mazeMap) {
         Set<String> cellIds = mazeMap.keySet();
         TreeSet<String> cellIdsSortedSet = new TreeSet<>(cellIds);

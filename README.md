@@ -50,3 +50,24 @@ Acceptance Criteria:
 UserStory 3
 -----------
 * An explorer must be able to automatically explore a maze and find the exit, and on exit they must be able to state the route they took in an understandable fashion.
+
+Instructions to use this program
+----------------------------------
+
+java TestClient <Optionally the Maze file>
+
+The Screen would display a content as below:
+Welcome to the next move in the maze.
+Your explorer ID is 1
+Your current position is 4-4
+Your have explored these cells [4-4]
+Your available directions from the current position are [RIGHT]
+If you want to exit the maze, press *
+Enter the next position to move :
+
+The User Input may be RIGHT
+
+The User can continye to explore the Maze. If the User decides to exit,
+the user may enter a *
+
+
