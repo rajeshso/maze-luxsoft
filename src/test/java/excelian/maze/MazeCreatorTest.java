@@ -32,7 +32,7 @@ public class MazeCreatorTest {
     }
 
     @Test
-    public final void testNegativeCreateMazeWithNoStart() {// throws MazeCreationException {
+    public final void testNegativeCreateMazeWithNoStart() {
         try {
             createMaze("/src/test/resources/TestIncorrectMaze5.txt");
             fail("Exception expected frz");
@@ -40,4 +40,23 @@ public class MazeCreatorTest {
             assertThat(e.getMessage()).isEqualTo("Starting position is not mentioned in the Maze");
         }
     }
+    @Test
+    public final void testNegativeCreateMazeWithNoEnd() {
+        try {
+            createMaze("/src/test/resources/TestIncorrectMaze6.txt");
+            fail("The test case failed for incorrect file");
+        } catch (MazeCreationException e) {
+            assertThat(e.getMessage()).isEqualTo("Finishing position is not mentioned in the Maze");
+        }
+    }
+
+    @Test
+    public final void testCreateMazeSetWithStartEndCells() throws MazeCreationException {
+        Maze maze = createMaze("/src/test/resources/TestMaze2.txt");
+        assertThat(maze.getStartCell()).isNotNull();
+        assertThat(maze.getEndCell()).isNotNull();
+        assertThat(maze.getStartCell().getVisitableUniqueID()).isEqualTo("3-4");
+        assertThat(maze.getEndCell().getVisitableUniqueID()).isEqualTo("6-48");
+    }
+
 }

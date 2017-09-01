@@ -17,6 +17,10 @@ public class Cell implements Visitable {
         this.blocked = blocked;
     }
 
+    @Override
+    public String getVisitableUniqueID() {
+        return cellId;
+    }
 
     @Override
     public boolean isBlocked() {

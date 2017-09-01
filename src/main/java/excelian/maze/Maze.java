@@ -8,10 +8,6 @@ public class Maze {
     private Visitable startCell;
     private Visitable endCell;
 
-    public Maze(final Map<String, Visitable> mazeMap) {
-        this.mazeMap = mazeMap;
-    }
-
     public Maze(final Map<String, Visitable> mazeMap, Visitable startCell, Visitable endCell) {
         this.mazeMap = mazeMap;
         this.startCell = startCell;
@@ -22,4 +18,12 @@ public class Maze {
         return mazeMap.get(cellId);
     }
 
+
+    public Visitable getStartCell() {
+        return startCell;
+    }
+
+    public Visitable getEndCell() {
+        return endCell;
+    }
 }
