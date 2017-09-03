@@ -70,4 +70,19 @@ The User Input may be RIGHT
 The User can continye to explore the Maze. If the User decides to exit,
 the user may enter a *
 
+Note: The user system should have a JRE 8 available in the classpath
 
+Design
+------
+
+The Explorer is designed to be a Visitor visiting the Maze.
+The design pattern is a Visitor Pattern.
+The Maze consits of cells. Every cell has an identity.
+The explorer can visit a particular cell.
+The explorer can move to an available neighbouring cell using instruction
+ such as LEFT, RIGHT, UP or DOWN.
+The Explorer is a Visitor.
+The Cell is a Visitable.
+A Cell with a Wall is considered as Blocked for the Explorer
+A Cell without a Wall is considered as Open for the Explorer.
+The Explorer can make Moves to reach the Destination.
