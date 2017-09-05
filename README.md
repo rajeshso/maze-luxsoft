@@ -54,14 +54,22 @@ UserStory 3
 Instructions to use this program
 ----------------------------------
 The Source code is hosted in this github site.
-The code can be git cloned and imported into an IDE that has Java 8 SDK in the path.
+
+The code can be git clone and imported into an IDE that has Java 8 SDK in the path - :
+
+``` git clone https://github.com/rajeshso/maze-luxsoft.git ```
+
+The source has a java file called excelian/maze/TestClient.java, which has the main method and acts as a gateway.
+
 The TestClient can be executed without arguments from the IDE.
+
 The TestClient can also optionally take an argument - the location of the Maze file
 
 Another method to execute the code would be to export the code to an executable jar
  and running from a command line.
 
-The Screen would display a content as below:
+The Screen would display a content as below - :
+```
 Welcome to the next move in the maze.
 Your explorer ID is 1
 Your current position is 4-4
@@ -69,11 +77,13 @@ Your have explored these cells [4-4]
 Your available directions from the current position are [RIGHT]
 If you want to exit the maze, press *
 Enter the next position to move :
+```
 
-The User Input may be RIGHT
+The User Input for the next position to move may be RIGHT
 
-The User can continye to explore the Maze. If the User decides to exit,
-the user may enter a *
+The User can continue to explore the Maze.
+
+If the User decides to exit, the user may enter a *
 
 Note: The user system should have a JRE 8 available in the classpath
 
@@ -84,7 +94,7 @@ The Explorer is designed to be a Visitor visiting the Maze.
 
 The design pattern is a Visitor Pattern.
 
-The Maze consits of cells. Every cell has an identity.
+The Maze consists of cells. Every cell has an identity.
 
 The explorer can visit a particular cell.
 
@@ -93,7 +103,7 @@ The explorer can move to an available neighbouring cell using instruction
 
 The Explorer is a Visitor.
 
-The Cell is a Visitable.
+The Cell is Navigable (Visitable).
 
 A Cell with a Wall is considered as Blocked for the Explorer
 
