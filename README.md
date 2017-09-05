@@ -54,7 +54,7 @@ UserStory 3
 Instructions to use this program
 ----------------------------------
 The Source code is hosted in this github site.
-The code can be git cloned and imported into an IDE.
+The code can be git cloned and imported into an IDE that has Java 8 SDK in the path.
 The TestClient can be executed without arguments from the IDE.
 The TestClient can also optionally take an argument - the location of the Maze file
 
