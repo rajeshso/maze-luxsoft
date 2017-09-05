@@ -53,8 +53,13 @@ UserStory 3
 
 Instructions to use this program
 ----------------------------------
+The Source code is hosted in this github site.
+The code can be git cloned and imported into an IDE.
+The TestClient can be executed without arguments from the IDE.
+The TestClient can also optionally take an argument - the location of the Maze file
 
-java TestClient < Optionally the Maze file >
+Another method to execute the code would be to export the code to an executable jar
+ and running from a command line.
 
 The Screen would display a content as below:
 Welcome to the next move in the maze.
@@ -76,13 +81,22 @@ Design
 ------
 
 The Explorer is designed to be a Visitor visiting the Maze.
+
 The design pattern is a Visitor Pattern.
+
 The Maze consits of cells. Every cell has an identity.
+
 The explorer can visit a particular cell.
+
 The explorer can move to an available neighbouring cell using instruction
  such as LEFT, RIGHT, UP or DOWN.
+
 The Explorer is a Visitor.
+
 The Cell is a Visitable.
+
 A Cell with a Wall is considered as Blocked for the Explorer
+
 A Cell without a Wall is considered as Open for the Explorer.
+
 The Explorer can make Moves to reach the Destination.
