@@ -94,7 +94,9 @@ The Explorer is designed to be a Visitor visiting the Maze.
 
 The design pattern is a Visitor Pattern.
 
-The Maze consists of cells. Every cell has an identity.
+The Maze consists of cells. 
+
+Every cell has an identity. Every cell has links to its neighbouring Cells.
 
 The explorer can visit a particular cell.
 
