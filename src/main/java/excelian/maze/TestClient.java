@@ -13,17 +13,14 @@ import static excelian.maze.MazeUtils.Direction.*;
  * This is a touch-point for the Operator
  * 
  */
-public class TestClient {
+class TestClient {
 	private static final Logger LOGGER = Logger.getLogger(TestClient.class);
 	private Maze maze;
 	private Visitor explorer;
-	private String defaultMazeFileName = new File("").getAbsolutePath() + "/src/main/resources/ExampleMaze.txt";
-
-	TestClient() {
-	}
+	private final String defaultMazeFileName = new File("").getAbsolutePath() + "/src/main/resources/ExampleMaze.txt";
 
 	private void createMaze(String mazeFileName) throws MazeCreationException {
-		String fileName = null;
+		String fileName;
 		if (mazeFileName != null)
 			fileName = mazeFileName;
 		else

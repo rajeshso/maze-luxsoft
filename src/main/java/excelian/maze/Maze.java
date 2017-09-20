@@ -2,8 +2,6 @@ package excelian.maze;
 
 import java.util.*;
 
-import static excelian.maze.MazeUtils.Direction.*;
-
 public class Maze {
     private static final int MAX_EXPLORERS = 1;
     private final Map<String, Visitable> mazeMap;
@@ -16,6 +14,7 @@ public class Maze {
         this.startCell = startCell;
         this.endCell = endCell;
         explorerRegistry = new HashSet<>(1);
+        fillNavigationInCells();
     }
 
     public boolean permitExplorer(Visitor explorer) {
@@ -27,62 +26,24 @@ public class Maze {
     }
 
     public List<MazeUtils.Direction> availableNextSteps(Visitor visitor) {
-        List<MazeUtils.Direction> resultStringList = new ArrayList<>();
-        Visitable currentCell;
-        currentCell = getCell(getCurrentCell(visitor));
-        if (getUpCell(currentCell) != null) resultStringList.add(UP);
-        if (getDownCell(currentCell) != null) resultStringList.add(DOWN);
-        if (getLeftCell(currentCell) != null) resultStringList.add(LEFT);
-        if (getRightCell(currentCell) != null) resultStringList.add(RIGHT);
-        return resultStringList;
-    }
-
-    private Visitable getUpCell(Visitable currentCell) {
-        String cellIdUp = MazeUtils.makeCellId(currentCell.getX() - 1, currentCell.getY());
-        return getOpenCellIfAvailable(cellIdUp);
-    }
-
-    private Visitable getDownCell(Visitable currentCell) {
-        String cellIdDown = MazeUtils.makeCellId(currentCell.getX() + 1, currentCell.getY());
-        return getOpenCellIfAvailable(cellIdDown);
-    }
-
-    private Visitable getLeftCell(Visitable currentCell) {
-        String cellIdLeft = MazeUtils.makeCellId(currentCell.getX(), currentCell.getY() - 1);
-        return getOpenCellIfAvailable(cellIdLeft);
-    }
-
-    private Visitable getRightCell(Visitable currentCell) {
-        String cellIdRight = MazeUtils.makeCellId(currentCell.getX(), currentCell.getY() + 1);
-        return getOpenCellIfAvailable(cellIdRight);
-    }
-
-    private Visitable getOpenCellIfAvailable(String cellId) {
-        Visitable upCell = this.getCell(cellId);
-        if (upCell != null && !upCell.isBlocked()) {
-            return upCell;
-        }
-        return null;
+        Visitable currentCell= getCell(getCurrentCell(visitor));
+        return currentCell.availableNextSteps();
     }
 
     public boolean moveRight(Visitor visitor) {
-        Visitable rightCell = this.getRightCell(getVisitorsCurrentCell(visitor));
-        return move(visitor, rightCell);
+        return move(visitor, getVisitorsCurrentCell(visitor).getRight());
     }
 
     public boolean moveLeft(Visitor visitor) {
-        Visitable leftCell = this.getLeftCell(getVisitorsCurrentCell(visitor));
-        return move(visitor, leftCell);
+        return move(visitor, getVisitorsCurrentCell(visitor).getLeft());
     }
 
     public boolean moveUp(Visitor visitor) {
-        Visitable upCell = this.getUpCell(getVisitorsCurrentCell(visitor));
-        return move(visitor, upCell);
+        return move(visitor, getVisitorsCurrentCell(visitor).getUp());
     }
 
     public boolean moveDown(Visitor visitor) {
-        Visitable downCell = this.getDownCell(getVisitorsCurrentCell(visitor));
-        return move(visitor, downCell);
+        return move(visitor, getVisitorsCurrentCell(visitor).getDown());
     }
 
     private Visitable getVisitorsCurrentCell(Visitor visitor) {
@@ -125,5 +86,37 @@ public class Maze {
         return visitor.getCurrentCell();
     }
 
+    private void fillNavigationInCells() {
+        mazeMap.values().forEach(visitable -> {
+            visitable.setDown(this.getDownCell(visitable)); visitable.setLeft(this.getLeftCell(visitable));
+            visitable.setUp(this.getUpCell(visitable)); visitable.setRight(this.getRightCell(visitable));
+        } );
+    }
+    private Visitable getUpCell(Visitable currentCell) {
+        String cellIdUp = MazeUtils.makeCellId(currentCell.getX() - 1, currentCell.getY());
+        return getOpenCellIfAvailable(cellIdUp);
+    }
 
+    private Visitable getDownCell(Visitable currentCell) {
+        String cellIdDown = MazeUtils.makeCellId(currentCell.getX() + 1, currentCell.getY());
+        return getOpenCellIfAvailable(cellIdDown);
+    }
+
+    private Visitable getLeftCell(Visitable currentCell) {
+        String cellIdLeft = MazeUtils.makeCellId(currentCell.getX(), currentCell.getY() - 1);
+        return getOpenCellIfAvailable(cellIdLeft);
+    }
+
+    private Visitable getRightCell(Visitable currentCell) {
+        String cellIdRight = MazeUtils.makeCellId(currentCell.getX(), currentCell.getY() + 1);
+        return getOpenCellIfAvailable(cellIdRight);
+    }
+
+    private Visitable getOpenCellIfAvailable(String cellId) {
+        Visitable upCell = this.getCell(cellId);
+        if (upCell != null && !upCell.isBlocked()) {
+            return upCell;
+        }
+        return null;
+    }
 }
