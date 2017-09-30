@@ -71,7 +71,6 @@ Another method to execute the code would be to export the code to an executable 
 The Screen would display a content as below - :
 ```
 Welcome to the next move in the maze.
-
 Your explorer ID is 1
 Your current position is 4-4
 Your have explored these cells [4-4]
